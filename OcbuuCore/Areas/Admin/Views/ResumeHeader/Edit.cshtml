@@ -1,0 +1,88 @@
+@model ResumeHeader
+
+<form method="post">
+    @* the asp-for="Id" is important, if I name it something else like ResumeHeaderId,
+        then I will have to use the below or else this edit will generate a new id
+        in the ResumeHeaderController.Edit and save the edit record as a new record.
+     *@
+    @* <input asp-for="Id" hidden /> *@
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit Resume Header</h2>
+            <hr/>
+        </div>
+        <div asp-validation-summary="All"></div>
+        @* <label class="form-label mt-4">Floating labels</label> *@
+        <div class="row mb-3 p-1">
+            <label asp-for="FirstName" class="col-form-label p-0"></label>
+            <input asp-for="FirstName" class="form-control" placeholder="Max length is 20 characters" >
+
+            @* asp-validation-for will display the invalid checking which set on the model itself *@
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="LastName" class="col-form-label p-0"></label>
+            <input asp-for="LastName" class="form-control" placeholder="Your Last Name" >
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="Headline" class="form-label p-0"></label>
+            <textarea asp-for="Headline" class="form-control" rows="3" placeholder="One Or Two Sentences"></textarea>
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="PhoneNum" class="col-form-label p-0"></label>
+            <input asp-for="PhoneNum" class="form-control" placeholder="(xxx) xxx-xxxx">
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="Email" class="form-label p-0"></label>
+            <input asp-for="Email" class="form-control" aria-describedby="emailHelp" placeholder="Enter Your Email">        
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="Country" class="col-form-label p-0"></label>
+            <input asp-for="Country" class="form-control">
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="StreetAddress" class="col-form-label p-0"></label>
+            <input asp-for="StreetAddress" class="form-control">
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="City" class="col-form-label p-0"></label>
+            <input asp-for="City" class="form-control">
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="State" class="col-form-label p-0"></label>
+            <input asp-for="State" class="form-control">
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="Zipcode" class="col-form-label p-0"></label>
+            <input asp-for="Zipcode" class="form-control">
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="LinkedIn" class="col-form-label p-0"></label>
+            <input asp-for="LinkedIn" class="form-control">
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="GitHub" class="col-form-label p-0"></label>
+            <input asp-for="GitHub" class="form-control">
+        </div>  
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Update</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-area="Visitor" asp-controller="Resume" asp-action="Index" class="btn btn-secondary border form-control">
+                    Back to Resume
+                </a>
+            </div>
+        </div>
+        
+       
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

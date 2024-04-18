@@ -1,0 +1,155 @@
+@model ResumeExperience
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create New Resume Experience</h2>
+            <hr/>
+        </div>
+        <div asp-validation-summary="All"></div>
+        @* <label class="form-label mt-4">Floating labels</label> *@
+        <div class="row mb-3 p-1">
+            <label asp-for="JobTitle" class="col-form-label p-0"></label>
+            <input asp-for="JobTitle" class="form-control" placeholder="Your Job Title" >
+
+            @* asp-validation-for will display the invalid checking which set on the model itself *@
+            <span asp-validation-for="JobTitle" class="text-danger"></span>
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="Company" class="col-form-label p-0"></label>
+            <input asp-for="Company" class="form-control" placeholder="Your Workplace" >
+            <span asp-validation-for="Company" class="text-danger"></span>
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="Country" class="col-form-label p-0"></label>
+            <input asp-for="Country" class="form-control" placeholder="Company's Country">
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="City" class="form-label p-0"></label>
+            <input asp-for="City" class="form-control" placeholder="Company's City">        
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="State" class="col-form-label p-0"></label>
+            <input asp-for="State" class="form-control" placeholder="Company's State">
+        </div>
+        <div class="row mb-3 p-1">
+            <label asp-for="Zipcode" class="col-form-label p-0"></label>
+            <input asp-for="Zipcode" class="form-control" placeholder="Company's Zipcode">
+        </div>
+        <fieldset>
+            <legend class="mt-4">Switch to the right for "YES"</legend>
+            <div class="form-check form-switch">
+                <input asp-for="CurrentlyWorkHere" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label asp-for="CurrentlyWorkHere" class="form-check-label" for="flexSwitchCheckDefault"></label>
+            </div>
+        </fieldset>
+
+        <div class="row mb-3 p-1">
+            <label for="exampleSelect1" class="col-form-label p-0 mt-4">Start Date</label>
+            <div class="row mb-3 p-1">
+                <div class="col-6 col-md-3">
+                    <select asp-for="StartMonth" class="form-select form-control">
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-3">
+                    <select asp-for="StartYear" class="form-select form-control">
+                        @for (int year = DateTime.Now.Year; year >= 1900; year--)
+                        {
+                            <option value=@year>@year</option>
+                        }
+                    </select>
+                </div>
+                
+                @* <label for="year">Year:</label> *@
+                
+            </div>
+            
+            @* <label asp-for="StartWorkingDate" class="col-form-label p-0"></label>
+            <input asp-for="StartWorkingDate" class="form-control" placeholder="MM/DD/YYYY"> *@
+        </div>
+        <div class="row mb-3 p-1">
+            <label for="exampleSelect1" class="col-form-label p-0 mt-4">End Date</label>
+            <div class="row mb-3 p-1">
+                <div class="col-6 col-md-3">
+                    <select asp-for="EndMonth" class="form-select form-control">
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-3">
+                    <select asp-for="EndYear" class="form-select form-control">
+                        @for (int year = DateTime.Now.Year; year >= 1900; year--)
+                        {
+                            <option value="@year">@year</option>
+                        }
+                    </select>
+                </div>
+                
+                @* <label for="year">Year:</label> *@
+                
+            </div>
+            @* <label asp-for="EndWorkingDate" class="col-form-label p-0"></label>
+            <input asp-for="EndWorkingDate" class="form-control" placeholder="MM/DD/YYYY"> *@
+        </div>
+         <div class="row py-2">
+            <label asp-for="Description" class="form-label p-0"></label>
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Your Task Description"></textarea>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">Create</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-area="Visitor" asp-controller="Resume" asp-action="Index" class="btn btn-secondary border form-control">
+                    Back to Resume
+                </a>
+            </div>
+        </div>
+        
+       
+    </div>
+</form>
+
+@section Scripts{
+    @* GP added - using for rich text editor *@
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
