@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ocbuu.DataAcess.Migrations
 {
     /// <inheritdoc />
-    public partial class InitAddAllResumeTables : Migration
+    public partial class reAddAllTablesToProd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -88,6 +88,11 @@ namespace Ocbuu.DataAcess.Migrations
                 table: "ResumeHeaders",
                 columns: new[] { "Id", "City", "Country", "CreatedDate", "Email", "FirstName", "GitHub", "Headline", "LastName", "LinkedIn", "ModifiedDate", "PhoneNum", "State", "StreetAddress", "Zipcode" },
                 values: new object[] { 1, "Morrow", "Clayton", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "gmphan7@gmail.com", "Giang", "ocbuugithub", "headline1", "Phan", "gphanLinkedIn", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "6780000000", "GA", "2192 Murry Trail", "30260" });
+
+            migrationBuilder.InsertData(
+                table: "ResumeSummaries",
+                columns: new[] { "Id", "CreatedDate", "ModifiedDate", "Summary" },
+                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "long summary" });
         }
 
         /// <inheritdoc />

@@ -12,8 +12,8 @@ using Ocbuu.DataAcess;
 namespace Ocbuu.DataAcess.Migrations
 {
     [DbContext(typeof(AzurePgDbContext))]
-    [Migration("20240318134122_InitAddAllResumeTables")]
-    partial class InitAddAllResumeTables
+    [Migration("20240423133652_reAddAllTablesToProd")]
+    partial class reAddAllTablesToProd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -217,6 +217,15 @@ namespace Ocbuu.DataAcess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ResumeSummaries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Summary = "long summary"
+                        });
                 });
 #pragma warning restore 612, 618
         }
