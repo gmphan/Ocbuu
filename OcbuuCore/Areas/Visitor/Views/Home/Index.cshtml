@@ -6,8 +6,8 @@
 <div class="card mb-3">
     <h3 class="card-header">Giang Michael Phan</h3>
     <div class="card-body">
-        <h5 class="card-title">Web Application Engineer</h5>
-        <h6 class="card-subtitle text-muted">Full Stack Developer with a Passion for Building User-Friendly Applications</h6>
+        <h5 class="card-title">Software Engineer</h5>
+        <h6 class="card-subtitle text-muted"><i>Full Stack Developer with a Passion for Building User-Friendly Applications</i></h6>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" 
         focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
@@ -27,21 +27,28 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                About Me
+                Information Cards
             </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                @Html.Partial("_AboutMe")
+                <div class="accordion-body">
+                    @* @Html.Partial("_InformationCards") *@
+                    <partial name="_InformationCards" />
+                </div>
             </div>
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Information Cards
+                About Me
             </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                @Html.Partial("_InformationCards")
+                <div class="accordion-body">
+                    @* @Html.Partial("_AboutMe") *@
+                    <partial name="_AboutMe"/>
+
+                </div>
             </div>
         </div>
         <div class="accordion-item">
@@ -55,14 +62,15 @@
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    @Html.Partial("_Resume")
+                    @* @Html.Partial("_Resume") *@
+                    <partial name="_Resume"/>
                 </div>
             </div>
         </div>  
     </div>
     
     <div class="card-footer text-muted">
-        2 days ago
+        Footer for this page
     </div>
 </div>
 
