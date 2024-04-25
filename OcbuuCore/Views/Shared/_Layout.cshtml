@@ -45,27 +45,27 @@
                 <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                    <a class="nav-link @((controllerName == "Home" && actionName == "Index")? "active":"")" asp-area="Visitor" asp-controller="Home" asp-action="Index">Home
-                        @* <span class="visually-hidden">(current)</span> *@
-                    </a>
+                        <a class="nav-link @((controllerName == "Home" && actionName == "Index")? "active":"")" asp-area="Visitor" asp-controller="Home" asp-action="Index">Home
+                            @* <span class="visually-hidden">(current)</span> *@
+                        </a>
                     </li>
                     @* <li class="nav-item">
                     <a class="nav-link" href="#">Features</a>
                     </li> *@
                     <li class="nav-item">
-                    <a class="nav-link @((controllerName == "Resume" && actionName == "Index")? "active":"")" asp-area="Visitor" asp-controller="Resume" asp-action="Index">Resume</a>
+                        <a class="nav-link @((controllerName == "Resume" && actionName == "Index")? "active":"")" asp-area="Admin" asp-controller="Resume" asp-action="Index">Resume</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" asp-area="Visitor" asp-controller="Home" asp-action="Index">About</a>
+                        <a class="nav-link" asp-area="Visitor" asp-controller="Home" asp-action="Index">About</a>
                     </li>
                     <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" asp-area="Visitor" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <a class="nav-link dropdown-toggle" asp-area="Visitor" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" asp-area="Admin" asp-controller="Resume" asp-action="Index">Edit Resume</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
+                        <a class="dropdown-item" href="#">Login</a>
                     </div>
                     </li>
                 </ul>
@@ -100,9 +100,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @* GP added - this use for rich tex editor *@
-    <script src="https://cdn.tiny.cloud/1/wai1xaxr9pab4qyzmjor8aaqbgq463ry2scgcn8438u6pbki/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

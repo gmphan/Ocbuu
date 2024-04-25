@@ -34,7 +34,7 @@ namespace OcbuuCore.Areas.Admin.Controllers
                 _unityOfWork.ResumeExperience.Add(obj);
                 _unityOfWork.Save();
                 TempData["success"] = "Successfully Created New Experience";
-                return RedirectToAction("Index", "Resume", new { area = "Visitor" });
+                return RedirectToAction("Index", "Resume");
             }
             return View();
         }
@@ -66,7 +66,7 @@ namespace OcbuuCore.Areas.Admin.Controllers
             _unityOfWork.ResumeExperience.Remove(obj);
             _unityOfWork.Save();
             TempData["success"] = "Successfully Deleted";
-            return RedirectToAction("Index", "Resume", new { area = "Visitor" });
+            return RedirectToAction("Index", "Resume");
         }
 
         public IActionResult Edit(int? id)
@@ -94,7 +94,7 @@ namespace OcbuuCore.Areas.Admin.Controllers
                 _unityOfWork.ResumeExperience.Update(obj);
                 _unityOfWork.Save();
                 TempData["success"] = "Successfully Edited";
-                return RedirectToAction("Index", "Resume", new { area = "Visitor" });
+                return RedirectToAction("Index", "Resume");
             }
             return View();
         }

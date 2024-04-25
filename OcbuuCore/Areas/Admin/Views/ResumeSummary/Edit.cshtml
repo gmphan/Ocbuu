@@ -1,0 +1,28 @@
+@model ResumeSummary
+@* 
+    Remember an object resumeSummary was sent to this view, so in that object 
+        it has the id in it.
+ *@
+<form method="post">
+    <div class="boder p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit Resume Summary</h2>
+            <hr/>
+        </div>
+    </div>
+    <div asp-validation-summary="All"></div>
+    <div class="row mb-3 p-1">
+        <label asp-for="Summary" class="form-label p-0"></label>
+        <textarea asp-for="Summary" class="form-control" rows="5" placeholder="A paragraph"></textarea>
+    </div>
+    <div class="row">
+        <div class="col-6 col-md-3">
+            <button type="submit" class="btn btn-primary form-control">Update</button>
+        </div>
+        <div class="col-6 col-md-3">
+            <a asp-area="Admin" asp-controller="Resume" asp-action="Index" class="btn btn-secondary border form-control">
+                Back to Resume
+            </a>
+        </div>
+    </div>
+</form>

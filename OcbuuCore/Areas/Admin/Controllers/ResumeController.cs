@@ -8,7 +8,7 @@ using Ocbuu.Models.ViewModels;
 
 namespace OcbuuCore.Areas.Admin.Controllers
 {
-    [Area("Visitor")]
+    [Area("Admin")]
     public class ResumeController : Controller
     {
         private readonly ILogger? _logger;

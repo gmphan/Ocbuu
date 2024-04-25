@@ -54,7 +54,8 @@ namespace OcbuuCore.Areas.Admin.Controllers
                 //if I have to redirect to an action inside the same controller
                 //I only need to give the action, if not, I will have to include
                 //controller name, too
-                return RedirectToAction("Index", "Resume", new { area = "Visitor"});
+                // return RedirectToAction("Index", "Resume", new { area = "Visitor"});
+                return RedirectToAction("Index", "Resume");
             }
 
             //if the obj is not valid then return the same Create view again.
@@ -78,16 +79,19 @@ namespace OcbuuCore.Areas.Admin.Controllers
             return View(resumeHeaderFromDb);
         }
 
+        /* 
+            When we post back to here, it posts the same resumeHeaderFromDb object back
+            with modified fields in it. 
+         */
         [HttpPost]
         public IActionResult Edit(ResumeHeader obj)
         {
             if(ModelState.IsValid)
             {
-                //EntityFramework will automatically look for primary key to match and update
                 _unityOfWork.ResumeHeader.Update(obj); 
                 _unityOfWork.Save();
                 TempData["success"] = "Successfully Edited";
-                return RedirectToAction("Index", "Resume", new { area = "Visitor"});
+                return RedirectToAction("Index", "Resume");
             }
             return View();
         }
@@ -121,7 +125,7 @@ namespace OcbuuCore.Areas.Admin.Controllers
             _unityOfWork.ResumeHeader.Remove(obj);
             _unityOfWork.Save();
             TempData["success"] = "Successfully Deleted";
-            return RedirectToAction("Index", "Resume", new { area = "Visitor"});
+            return RedirectToAction("Index", "Resume");
         }
 
 

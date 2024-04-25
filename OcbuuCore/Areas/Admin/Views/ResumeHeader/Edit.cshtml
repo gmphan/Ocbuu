@@ -1,9 +1,13 @@
 @model ResumeHeader
 
 <form method="post">
-    @* the asp-for="Id" is important, if I name it something else like ResumeHeaderId,
-        then I will have to use the below or else this edit will generate a new id
+    @* the asp-for="Id" is not neccessary here since "Id" is a default field in ef db,
+        if I name the field something else like ResumeHeaderId,
+        then I will have to use <input asp-for="Id" hidden /> the below 
+        or else this edit will generate a new id
         in the ResumeHeaderController.Edit and save the edit record as a new record.
+        Remember an object resumeHeaderFromDb was sent to this view, so in that object 
+        it has the id in it.
      *@
     @* <input asp-for="Id" hidden /> *@
     <div class="border p-3 mt-4">
@@ -71,7 +75,7 @@
                 <button type="submit" class="btn btn-primary form-control">Update</button>
             </div>
             <div class="col-6 col-md-3">
-                <a asp-area="Visitor" asp-controller="Resume" asp-action="Index" class="btn btn-secondary border form-control">
+                <a asp-area="Admin" asp-controller="Resume" asp-action="Index" class="btn btn-secondary border form-control">
                     Back to Resume
                 </a>
             </div>
