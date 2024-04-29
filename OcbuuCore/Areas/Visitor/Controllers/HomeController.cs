@@ -22,15 +22,15 @@ namespace OcbuuCore.Areas.Visitor.Controllers
             // getting the latest record based on primary key becuase
             // I only want to send one header back to ResumeVM
             ResumeHeader? resumeHeader = _unityOfWork.ResumeHeader.GetLatestRecord(x => x.Id);
-            IEnumerable<ResumeExperience>? resumeExperiences = _unityOfWork.ResumeExperience.GetAll();
             ResumeSummary? resumeSummary = _unityOfWork.ResumeSummary.GetLatestRecord(x => x.Id);
+            IEnumerable<ResumeExperience>? resumeExperiences = _unityOfWork.ResumeExperience.GetAll();
             ResumeVM resumeVM;
             if (resumeHeader != null)
             {
                 resumeVM = new()
                 {
                     ResumeHeader = resumeHeader,
-                    ResumeExperiences = resumeExperiences,
+                    ResumeExperiences = resumeExperiences.OrderByDescending(x => x.EndYear),
                     ResumeSummary = resumeSummary
                 };
             }
