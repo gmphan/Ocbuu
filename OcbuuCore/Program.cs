@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Ocbuu.DataAcess;
 using Ocbuu.DataAcess.Repository;
 using Ocbuu.DataAcess.Repository.IRepository;
+using Ocbuu.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<AzurePgDbContext>(Options => Options.UseNpgsql(
                                     builder.Configuration.GetConnectionString("PostgresConnection")));
 
 builder.Services.AddScoped<IUnityOfWork, UnitiyOfWork>();
+builder.Services.AddScoped<IResumeServices, ResumerServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

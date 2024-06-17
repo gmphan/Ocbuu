@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ocbuu.DataAcess\Ocbuu.DataAcess.csproj" />
+    <ProjectReference Include="..\Ocbuu.Models\Ocbuu.Models.csproj" />
+    <ProjectReference Include="..\Ocbuu.Utility\Ocbuu.Utility.csproj" />
+  </ItemGroup>
+</Project>
