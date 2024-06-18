@@ -23,21 +23,31 @@ namespace Ocbuu.Services
             _memoryCache = memoryCache;
         }
 
-        public Task<List<ResumeExperience>> GetLatestResumeExperienceAsync()
+        public async Task<IEnumerable<ResumeExperience>> GetAllResumeExperienceAsync()
         {
+            return await GetTAsync("resumeExperience", () => _unityOfWork.ResumeExperience.GetAll());
             
-            throw new NotImplementedException();
         }
 
         public async Task<ResumeHeader> GetLatestResumeHeaderAsync()
         {
-            const string cacheKey = "resumeHeaders";
-            if(!_memoryCache.TryGetValue(cacheKey, out ResumeHeader resumeHeader))
+            
+            return await GetTAsync("resumeHeaders", () => _unityOfWork.ResumeHeader.GetLatestRecord(x => x.Id));
+        }
+
+        public async Task<ResumeSummary> GetLatestResumeSummaryAsync()
+        {
+            return await GetTAsync("resumeSummary", () => _unityOfWork.ResumeSummary.GetLatestRecord(x => x.Id));
+        }
+
+        public async Task<T> GetTAsync<T>(string cacheKey, Func<T> getRecordFromDb) where T : class
+        {
+            if(!_memoryCache.TryGetValue(cacheKey, out T record))
             {
                 _logger.LogInformation("Querying data from PgDb.");
 
                 // Data not found in cache, retrieve data from db then
-                resumeHeader = _unityOfWork.ResumeHeader.GetLatestRecord(x => x.Id);
+                record = getRecordFromDb();
 
                 // Set the data to memory cache
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
@@ -45,18 +55,13 @@ namespace Ocbuu.Services
                                         .SetAbsoluteExpiration(TimeSpan.FromHours(6));  // Cache will expire after 6 hours
 
                 // Set data to cache
-                _memoryCache.Set(cacheKey, resumeHeader, cacheEntryOptions);
+                _memoryCache.Set(cacheKey, record, cacheEntryOptions);
             }
             else
             {
                 _logger.LogInformation($"Data was pulled from Memory Cache: {cacheKey}");
             }
-            return resumeHeader;
-        }
-
-        public Task<ResumeSummary> GetLatestResumeSummaryAsync()
-        {
-            throw new NotImplementedException();
+            return record;
         }
     }
 }

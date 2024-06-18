@@ -28,9 +28,22 @@ namespace OcbuuCore.Areas.Visitor.Controllers
 
         public async Task<IActionResult> Index()
         {
-            ResumeView resumeView = new ResumeView();
-            await _resumeServices.GetLatestResumeHeaderAsync();
+            ResumeView resumeView = await CreateResumeView();
             return View(resumeView);
+        }
+
+        // Create a ResumeView object
+        public async Task<ResumeView> CreateResumeView()
+        {
+            ResumeView resumeView = new ResumeView{
+                ResumeHeader = await _resumeServices.GetLatestResumeHeaderAsync(),
+                ResumeExperiences = (await _resumeServices.GetAllResumeExperienceAsync()).ToList(),
+                ResumeSummary = await _resumeServices.GetLatestResumeSummaryAsync()
+            };
+
+            resumeView.SortByExperienceDate();
+
+            return resumeView;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -10,6 +10,6 @@ namespace Ocbuu.Services
     {
         public Task<ResumeHeader> GetLatestResumeHeaderAsync();
         public Task<ResumeSummary> GetLatestResumeSummaryAsync();
-        public Task<List<ResumeExperience>> GetLatestResumeExperienceAsync();
+        public Task<IEnumerable<ResumeExperience>> GetAllResumeExperienceAsync();
     }
 }

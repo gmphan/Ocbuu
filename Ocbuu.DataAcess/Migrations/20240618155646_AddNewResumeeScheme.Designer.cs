@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Ocbuu.DataAcess;
@@ -11,9 +12,11 @@ using Ocbuu.DataAcess;
 namespace Ocbuu.DataAcess.Migrations
 {
     [DbContext(typeof(AzurePgDbContext))]
-    partial class AzurePgDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240618155646_AddNewResumeeScheme")]
+    partial class AddNewResumeeScheme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -292,27 +295,6 @@ namespace Ocbuu.DataAcess.Migrations
                     b.HasIndex("ResumeeHeaderId");
 
                     b.ToTable("ResumeeExperiences");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Morrow",
-                            Company = "Clayton State",
-                            Country = "U.S.A",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CurrentlyWorkHere = true,
-                            Description = "Coding job",
-                            EndMonth = "December",
-                            EndYear = 2024,
-                            JobTitle = "Software Engineer",
-                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ResumeeHeaderId = 1,
-                            StartMonth = "January",
-                            StartYear = 2000,
-                            State = "GA",
-                            Zipcode = "30260"
-                        });
                 });
 
             modelBuilder.Entity("Ocbuu.Models.ResumeeHeader", b =>
@@ -380,26 +362,6 @@ namespace Ocbuu.DataAcess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ResumeeHeaders");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Morrow",
-                            Country = "Clayton",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "gmphan7@gmail.com",
-                            FirstName = "Giang",
-                            GitHub = "ocbuugithub",
-                            Headline = "headline1",
-                            LastName = "Phan",
-                            LinkedIn = "gphanLinkedIn",
-                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PhoneNum = "6780000000",
-                            State = "GA",
-                            StreetAddress = "2192 Murry Trail",
-                            Zipcode = "30260"
-                        });
                 });
 
             modelBuilder.Entity("Ocbuu.Models.ResumeeSummary", b =>
@@ -428,16 +390,6 @@ namespace Ocbuu.DataAcess.Migrations
                     b.HasIndex("ResumeeHeaderId");
 
                     b.ToTable("ResumeeSummaries");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ResumeeHeaderId = 1,
-                            Summary = "long summary"
-                        });
                 });
 
             modelBuilder.Entity("Ocbuu.Models.ResumeeExperience", b =>

@@ -21,10 +21,10 @@ namespace Ocbuu.Models.ViewModels
             ResumeExperiences = new List<ResumeExperience>();
         }
 
-        public void AddExperience(ResumeExperience experience)
-        {
-            ResumeExperiences.Add(experience);
-        }
+        // public void AddExperience(ResumeExperience experience)
+        // {
+        //     ResumeExperiences.Add(experience);
+        // }
 
         public void SortByExperienceDate()
         {
