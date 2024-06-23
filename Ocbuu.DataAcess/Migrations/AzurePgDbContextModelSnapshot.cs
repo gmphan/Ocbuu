@@ -83,7 +83,7 @@ namespace Ocbuu.DataAcess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ResumeExperiences");
+                    b.ToTable("ResumeExperiences", (string)null);
 
                     b.HasData(
                         new
@@ -170,7 +170,7 @@ namespace Ocbuu.DataAcess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ResumeHeaders");
+                    b.ToTable("ResumeHeaders", (string)null);
 
                     b.HasData(
                         new
@@ -213,7 +213,7 @@ namespace Ocbuu.DataAcess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ResumeSummaries");
+                    b.ToTable("ResumeSummaries", (string)null);
 
                     b.HasData(
                         new
@@ -223,250 +223,6 @@ namespace Ocbuu.DataAcess.Migrations
                             ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Summary = "long summary"
                         });
-                });
-
-            modelBuilder.Entity("Ocbuu.Models.ResumeeExperience", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Company")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("CurrentlyWorkHere")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("EndMonth")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("EndYear")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("JobTitle")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("ResumeeHeaderId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("StartMonth")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int?>("StartYear")
-                        .IsRequired()
-                        .HasColumnType("integer");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Zipcode")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ResumeeHeaderId");
-
-                    b.ToTable("ResumeeExperiences");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Morrow",
-                            Company = "Clayton State",
-                            Country = "U.S.A",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CurrentlyWorkHere = true,
-                            Description = "Coding job",
-                            EndMonth = "December",
-                            EndYear = 2024,
-                            JobTitle = "Software Engineer",
-                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ResumeeHeaderId = 1,
-                            StartMonth = "January",
-                            StartYear = 2000,
-                            State = "GA",
-                            Zipcode = "30260"
-                        });
-                });
-
-            modelBuilder.Entity("Ocbuu.Models.ResumeeHeader", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("GitHub")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Headline")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LinkedIn")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("PhoneNum")
-                        .HasMaxLength(12)
-                        .HasColumnType("character varying(12)");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("StreetAddress")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Zipcode")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ResumeeHeaders");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Morrow",
-                            Country = "Clayton",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "gmphan7@gmail.com",
-                            FirstName = "Giang",
-                            GitHub = "ocbuugithub",
-                            Headline = "headline1",
-                            LastName = "Phan",
-                            LinkedIn = "gphanLinkedIn",
-                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PhoneNum = "6780000000",
-                            State = "GA",
-                            StreetAddress = "2192 Murry Trail",
-                            Zipcode = "30260"
-                        });
-                });
-
-            modelBuilder.Entity("Ocbuu.Models.ResumeeSummary", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("ResumeeHeaderId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Summary")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ResumeeHeaderId");
-
-                    b.ToTable("ResumeeSummaries");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ResumeeHeaderId = 1,
-                            Summary = "long summary"
-                        });
-                });
-
-            modelBuilder.Entity("Ocbuu.Models.ResumeeExperience", b =>
-                {
-                    b.HasOne("Ocbuu.Models.ResumeeHeader", "ResumeeHeader")
-                        .WithMany("Experiences")
-                        .HasForeignKey("ResumeeHeaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ResumeeHeader");
-                });
-
-            modelBuilder.Entity("Ocbuu.Models.ResumeeSummary", b =>
-                {
-                    b.HasOne("Ocbuu.Models.ResumeeHeader", "ResumeeHeader")
-                        .WithMany("Summaries")
-                        .HasForeignKey("ResumeeHeaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ResumeeHeader");
-                });
-
-            modelBuilder.Entity("Ocbuu.Models.ResumeeHeader", b =>
-                {
-                    b.Navigation("Experiences");
-
-                    b.Navigation("Summaries");
                 });
 #pragma warning restore 612, 618
         }

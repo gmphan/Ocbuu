@@ -3,7 +3,6 @@ next: create Resume View. -- thinking about add the view to session to save reso
 next: display the view. - done
 
 // new table design
-next: Query from new tables - should same as the old.
-next: Add new records
-next: delete records 
-next: edit records
+next: Query from new tables - should same as the old. -- cancel
+-- I decided to keep it as how it was because this for myself only, so header, summary and experiences, they all can be independent. 
+next: redo the Resume View a little

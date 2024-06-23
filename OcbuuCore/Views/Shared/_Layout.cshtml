@@ -27,71 +27,184 @@
             text-indent: 2em; /* Adjust the indentation size as needed */
         }
     </style>
+
+    <style>
+        .custom-navbar-bg {
+            background-color: #050a14 !important;
+        }
+    </style>
+
+    @* custom active for navigation *@
+    <style>
+        .custom-active {
+            background-color: white;
+            color: black !important; /* Ensures text is black */
+            border-color: black;
+        }
+
+        .custom-active:hover {
+            background-color: white;
+            color: black !important; /* Ensures text is black on hover */
+            border-color: black;
+        }
+    </style>
 </head>
 <body>
     @* <header> *@
         @{
+            string areaName = ViewContext.RouteData.Values["area"]?.ToString();
             string controllerName = ViewContext.RouteData.Values["controller"]?.ToString();
             string actionName = ViewContext.RouteData.Values["action"]?.ToString();
             @* Console.WriteLine($"{controllerName}, {actionName}"); *@
         }
-
-        <nav class="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark" >
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="Visitor" asp-controller="Home" asp-action="Index">OC BUU</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link @((controllerName == "Home" && actionName == "Index")? "active":"")" asp-area="Visitor" asp-controller="Home" asp-action="Index">Home
-                            @* <span class="visually-hidden">(current)</span> *@
-                        </a>
-                    </li>
-                    @* <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                    </li> *@
-                    <li class="nav-item">
-                        <a class="nav-link @((controllerName == "Resume" && actionName == "Index")? "active":"")" asp-area="Visitor" asp-controller="Resume" asp-action="Index">Resume</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Visitor" asp-controller="Home" asp-action="Index">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" asp-area="Visitor" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" asp-area="Admin" asp-controller="Resume" asp-action="Index">Edit Resume</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Login</a>
+    <div class="container-fluid p-0" style="min-height:70vh;">
+        <div class="container-fluid p-0 mt-0">
+            <nav class="navbar navbar-expand-lg bg-dark btn-secondary custom-navbar-bg" data-bs-theme="dark">
+                <div class="container">
+                    <!-- Brand/logo -->
+                    <a class="navbar-brand" asp-area="@areaName" asp-controller="Home" asp-action="Index" > 
+                        <h4>OC_BUU</h4>
+                    </a>
+                    <!-- Toggler/collapsible Button -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                            data-bs-target="#navbarSupportedItems" aria-controls="navbarSupportedItems" 
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!-- Navbar links -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedItems">
+                        @if (areaName == "Admin")
+                        {
+                            <div class="btn-group btn-group-toggle my-2 my-sm-2 ms-3" id="radioScope">
+                                <a class="btn btn-outline-light text-white @(controllerName == "Home" ? "active custom-active" : "")" 
+                                    asp-area="@areaName" asp-controller="Home" asp-action="Index">
+                                    Home
+                                </a>
+                                <a class="btn btn-outline-light text-white @(controllerName == "Resume" ? "active custom-active" : "")" 
+                                    asp-area="@areaName" asp-controller="Resume" asp-action="Index">
+                                    Resume
+                                </a>
+                                <a class="btn btn-outline-light text-white @(controllerName == "About" ? "active custom-active" : "")" 
+                                    asp-area="@areaName" asp-controller="About" asp-action="Index">
+                                    About
+                                </a>                            
+                                <a class="btn btn-outline-light text-white @(controllerName == "Admin" ? "active custom-active" : "")" 
+                                    asp-area="@areaName" asp-controller="Admin" asp-action="Index">
+                                    Admin
+                                </a>
+                                
+                            </div>
+                        }
+                        else if (areaName == "Visitor")
+                        {
+                            <div class="btn-group btn-group-toggle my-2 my-sm-2 ms-3" id="radioScope">
+                                <a class="btn btn-outline-light text-white @(controllerName == "Home" ? "active custom-active" : "")" 
+                                    asp-area="@areaName" asp-controller="Home" asp-action="Index">
+                                    Home
+                                </a>
+                                <a class="btn btn-outline-light text-white @(controllerName == "Resume" ? "active custom-active" : "")" 
+                                    asp-area="@areaName" asp-controller="Resume" asp-action="Index">
+                                    Resume
+                                </a>                            
+                                <a class="btn btn-outline-light text-white @(controllerName == "About" ? "active custom-active" : "")" 
+                                    asp-area="@areaName" asp-controller="About" asp-action="Index">
+                                    About
+                                </a>
+                                <div class="btn-group">
+                                    <a class="btn btn-outline-light text-white dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        Admin
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Resume" asp-action="Index">Edit Resume</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Login</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        }
+                        
+                        @* justify-content-end *@
                     </div>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                    <div class="d-flex justify-content-end">
+                        <form class="d-flex" method="post" asp-action="Search" asp-controller="@controllerName">
+                            <div class="input-group">
+                                <input class="form-control" type="search" placeholder="Search">
+                                @* <input type="search" name="query" class="form-control" placeholder="Search @(controllerName == "Department" ? "Department" : controllerName)" aria-label="Search"> *@
+                                <button class="btn btn-secondary" type="submit">Search</button>
+                            </div>
+                        </form>
+                        @if (areaName == "Admin")
+                        {
+                            <form method="post" asp-area="Admin" asp-controller="Auth" asp-action="SignOut"  class="d-inline ms-3">
+                                <button type="submit" class="btn btn-secondary">Sign Out</button>
+                            </form>
+                            @* <a type="button" class="btn btn-secondary" href="/MicrosoftIdentity/Account/SignIn">Sign Out</a> *@
+                            @* <form method="post" action="/MicrosoftIdentity/Account/SignOut">
+                                <button type="submit" class="btn btn-link nav-link">Sign out</button>
+                            </form>
+                            <p>User is authenticated</p> <!-- Debugging output --> *@
+                        }
+                        else if (areaName == "Visitor")
+                        {
+                            <form method="post" asp-area="Admin" asp-controller="Auth" asp-action="SignIn" class="d-inline ms-3">
+                                <button type="submit" class="btn btn-secondary">Sign In</button>
+                            </form>
+                            @* <a type="button" class="btn btn-secondary" href="/MicrosoftIdentity/Account/SignIn">Sign In</a> *@
+                        }                        
+                        <!-- Button to trigger modal -->
+                        <button type="button" title="Click if you have any question." class="btn ms-3" data-bs-toggle="modal" 
+                                data-bs-target="#infoModal"><i class="bi bi-patch-question"></i></button>
+
+                        <!-- Modal -->
+                        <div id="infoModal" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    @* <div class="modal-header">
+                                        <h5 class="modal-title">Support Information</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"></span>
+                                        </button>
+                                    </div> *@
+                                    <div class="modal-body text-white">
+                                        <h5>Information Services</h5>
+                                        <p>
+                                            Phone: (678) 466-4000 <br/>
+                                            <a href="https://clayton.edu/about/campus-and-instructional-sites" target="_blank">Maps and Directions</a>
+                                        </p><br/>
+                                        <h5>Technology Services</h5>
+                                        <p>
+                                            Phone: (678) 466-4357 <br/>
+                                            Email: <a href="mailto:thehub@clayton.edu">thehub@clayton.edu</a>
+                                        </p>
+                                    </div>
+                                    @* <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div> *@
+                                </div>
+                            </div>
+                        </div>                                 
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+        
+    @* </header> *@
+        <main role="main" class="pb-0"></main>
+            <div class="card mb-3">
+                <div class="card-body">
+                    @RenderBody()
                 </div>
             </div>
-            </nav>
-    @* </header> *@
-    
-    <div class="container">
-        <div class="row" style="height:65px; width:auto">
-            @* this to help push down the main pass the navigation
-                if I don't want this, I need to remove fix-top from nav
-             *@
-        </div>
-        <main role="main" class="pb-3">
-
             @* GP added _Notification partial here, so it can be used by all the pages before they rendered *@
-            <partial name="_Notification"/>
-            @RenderBody()
+                <partial name="_Notification"/>
         </main>
+        
     </div>
-
     <footer class="border-top footer bg-primary text-muted" data-bs-theme="dark">
         <div class="container text-center">
             2024 by OcBuu <i class="bi bi-balloon-heart-fill"></i>
