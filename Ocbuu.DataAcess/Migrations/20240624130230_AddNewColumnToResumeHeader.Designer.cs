@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Ocbuu.DataAcess;
@@ -11,9 +12,11 @@ using Ocbuu.DataAcess;
 namespace Ocbuu.DataAcess.Migrations
 {
     [DbContext(typeof(AzurePgDbContext))]
-    partial class AzurePgDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240624130230_AddNewColumnToResumeHeader")]
+    partial class AddNewColumnToResumeHeader
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

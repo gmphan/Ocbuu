@@ -19,6 +19,9 @@ namespace Ocbuu.Models
         [MaxLength(20)]
         [DisplayName("First Name")]
         public string? FirstName { get; set; }
+         [MaxLength(20)]
+        [DisplayName("Middle Name")]
+        public string? MiddleName { get; set; }
         [Required]
         [DisplayName("Last Name")]
         public string? LastName { get; set; }

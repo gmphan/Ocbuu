@@ -8,54 +8,62 @@
 }
 
 <div class="card border-info">
-    <h3 class="card-header">@resumeHeader.FirstName @resumeHeader.LastName</h3>
+    <h3 class="card-header">Resume</h3>
   <div class="card-body">
-    <h5 class="card-title">Software Engineer</h5>
-    <h6 class="card-subtitle text-muted"><i>@resumeHeader.Headline</i></h6>
-    <div>
-        <p class="card-text">
-            @resumeHeader.City, @resumeHeader.Zipcode, @resumeHeader.Country <br/>
-            @resumeHeader.PhoneNum <br/>
-            @resumeHeader.Email 
-        </p>
-        <a href="@resumeHeader.LinkedIn" class="card-link">LinkedIn</a> 
-        <a href="@resumeHeader.GitHub" class="card-link">GitHub</a> <br/>
+    <div class="text-center">
+        <h4 class="card-title">@resumeHeader.FirstName @resumeHeader.MiddleName @resumeHeader.LastName </h4>
+        <h5 class="card-title"><i> Software Engineer</i></h5>
+        <hr class="hr hr-blurry" style="width: 30%; margin-left: auto; margin-right: auto"/>
+        <h6 class="card-subtitle text-muted"><i>@resumeHeader.Headline</i></h6>
+        <div>
+            <p class="card-text">
+                @resumeHeader.City, @resumeHeader.Zipcode, @resumeHeader.Country <br/>
+                @resumeHeader.PhoneNum <br/>
+                @resumeHeader.Email 
+            </p>
+            <a href="@resumeHeader.LinkedIn" class="card-link">LinkedIn</a> 
+            <a href="@resumeHeader.GitHub" class="card-link">GitHub</a> <br/>
+        </div>
     </div>
+    
     <hr class="hr" />
     <div class="mt-4">
-        <h4>SUMMARY:</h4>
+        <div class="text-center"><h4>SUMMARY:</h4></div>
+        <hr class="hr hr-blurry" style="width: 30%; margin-left: auto; margin-right: auto"/>
         <p class="card-text">
             @resumeSummary.Summary
         </p>
     </div>
     <hr class="hr" />
     <div class="mt-4">
-        <h4>EXPERIENCES:</h4><br/>
+        <div class="text-center"><h4>EXPERIENCES:</h4></div>        
+        <hr class="hr hr-blurry" style="width: 30%; margin-left: auto; margin-right: auto"/>
         @foreach (var item in resumeExperiences)
-        {
-            <div>
-                <h4 class="card-title">
-                    <i class="bi bi-list-ul"></i> @item.JobTitle
-                </h4>
-                
-                <h6 class="card-subtitle mb-2 text-muted">
-                    <i>
-                        @item.StartMonth @item.StartYear - @if(item.CurrentlyWorkHere)
-                        {
-                            <span>Currently work here.</span>
-                        } 
-                        else 
-                        {
-                            @item.EndMonth @item.EndYear
-                        }
-                    </i><br/>
-                    <i>@item.Company, @item.City, @item.State, @item.Country</i>
-                </h6>
+        {   
+            <div class="list-group">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="card-title mb-1"><i class="bi bi-list-ul"></i> @item.JobTitle</h5>
+                    <small>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <i>
+                                @item.StartMonth @item.StartYear - @if(item.CurrentlyWorkHere)
+                                {
+                                    <span>Currently work here.</span>
+                                } 
+                                else 
+                                {
+                                    @item.EndMonth @item.EndYear
+                                }
+                            </i>
+                        </h6>
+                    </small>
+                </div>
+                <h6 class="text-muted"><i>@item.Company, @item.City, @item.State, @item.Country</i></h6>
                 <p class="card-text">
                     @Html.Raw(item.Description)
                 </p>
             </div>
-            <hr class="hr hr-blurry" />
+            <hr class="hr hr-blurry" style="width: 30%; margin-left: auto; margin-right: auto"/>
             
         }
     </div>
