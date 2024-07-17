@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Ocbuu.DataAcess;
 using Ocbuu.DataAcess.Repository;
 using Ocbuu.DataAcess.Repository.IRepository;
+using Ocbuu.Models;
 using Ocbuu.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,28 @@ builder.Services.AddControllersWithViews();
   //                                  builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<AzurePgDbContext>(Options => Options.UseNpgsql(
                                     builder.Configuration.GetConnectionString("PostgresConnection")));
+
+/*  Authentication setup */
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<AzurePgDbContext>()
+        .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(options =>
+    {
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 8;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+    });
+
+builder.Services.ConfigureApplicationCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+    });
+/* End Authentication setup */
 
 builder.Services.AddScoped<IUnityOfWork, UnitiyOfWork>();
 builder.Services.AddScoped<IResumeServices, ResumerServices>();

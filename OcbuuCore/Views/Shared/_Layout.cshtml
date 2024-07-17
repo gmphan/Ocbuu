@@ -10,11 +10,13 @@
         and replace code with the bootstrap.css below.
      *@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+    <link rel="stylesheet" href="~/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
     @* sometime the footer won't stay at the bottom because the style.css not working
         when it happens, I will need to comment it out rerun the project then uncomment it again *@
-    <link rel="stylesheet" href="~/OcbuuCore.styles.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/OcbuuCore.styles.css" asp-append-version="true" /> *@
 
     @* this link is use for bootstrap icon frorm icons.getbootstrap.com *@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
@@ -22,6 +24,50 @@
     @* this toastr make TempData _Notification partial view look pretty *@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
     
+     @* for footer by GP *@
+    <style>
+        .back-button {
+            text-decoration: none;
+        }
+        .main-nav a:hover{
+            text-decoration: underline; /* Underline when hovering */
+        }
+
+        /* Custom styles */
+        .footer-list {
+            padding-left: 0; /* Remove default padding */
+        }
+        
+        /* Override Bootstrap link color and underline */
+        .footer-list li a {
+            color: white !important; /* Set link color to white */
+            text-decoration: none; /* Remove underline */
+            transition: text-decoration 0.3s ease; /* Smooth transition */
+        }
+        /* Apply underline effect on hover */
+        .footer-list li a:hover {
+            text-decoration: underline; /* Underline when hovering */
+        }
+        /* Adjust margin between list items */
+        .footer-list li {
+            margin-bottom: 0px; /* Set margin between list items */
+        }
+        .csu-address p {
+            margin: 0px !important; /* Set margin-bottom to reduce space between paragraphs */
+            padding: 0px !important; /* Set padding-bottom to 0 */
+        }
+        .csuSocialIcon a {
+            color: inherit; /* Use the color of its parent element */
+            text-decoration: none; /* Remove underline */
+        }
+        .custom-hr {
+            width: 100%;             /* Adjust the width as needed */
+            border: none;           /* Removes the default border */
+            height: 5px;            /* Sets the thickness of the HR */
+            background-color: #5a0c0c; /* Change color as needed */
+            margin: 0px auto;      /* Centers the HR and adds vertical spacing */
+        }
+    </style> 
     <style>
         .indented-paragraph {
             text-indent: 2em; /* Adjust the indentation size as needed */
@@ -30,7 +76,7 @@
 
     <style>
         .custom-navbar-bg {
-            background-color: #050a14 !important;
+            background-color: #092C74 !important;
         }
     </style>
 
@@ -50,7 +96,6 @@
     </style>
 </head>
 <body>
-    @* <header> *@
         @{
             string areaName = ViewContext.RouteData.Values["area"]?.ToString();
             string controllerName = ViewContext.RouteData.Values["controller"]?.ToString();
@@ -60,10 +105,11 @@
     <div class="container-fluid p-0" style="min-height:70vh;">
         <div class="container-fluid p-0 mt-0">
             <nav class="navbar navbar-expand-lg bg-dark btn-secondary custom-navbar-bg" data-bs-theme="dark">
+            @* <nav class="navbar navbar-expand-lg bg-light btn-secondary" data-bs-theme="light"> *@
                 <div class="container">
                     <!-- Brand/logo -->
                     <a class="navbar-brand" asp-area="@areaName" asp-controller="Home" asp-action="Index" > 
-                        <h4>OC_BUU</h4>
+                        <h1>OC_BUU</h1>
                     </a>
                     <!-- Toggler/collapsible Button -->
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
@@ -155,19 +201,19 @@
                             @* <a type="button" class="btn btn-secondary" href="/MicrosoftIdentity/Account/SignIn">Sign In</a> *@
                         }                        
                         <!-- Button to trigger modal -->
-                        <button type="button" title="Click if you have any question." class="btn ms-3" data-bs-toggle="modal" 
+                        <button type="button" title="Click if you have any question." class="btn btn-secondary ms-3" data-bs-toggle="modal" 
                                 data-bs-target="#infoModal"><i class="bi bi-patch-question"></i></button>
 
                         <!-- Modal -->
                         <div id="infoModal" class="modal fade" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-                                    @* <div class="modal-header">
-                                        <h5 class="modal-title">Support Information</h5>
+                                   <div class="modal-header text-white">
+                                        <h2 class="modal-title">Support Information</h2>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true"></span>
                                         </button>
-                                    </div> *@
+                                    </div>
                                     <div class="modal-body text-white">
                                         <h5>Information Services</h5>
                                         <p>
@@ -180,9 +226,9 @@
                                             Email: <a href="mailto:thehub@clayton.edu">thehub@clayton.edu</a>
                                         </p>
                                     </div>
-                                    @* <div class="modal-footer">
+                                    <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div> *@
+                                    </div>
                                 </div>
                             </div>
                         </div>                                 
@@ -191,11 +237,8 @@
             </nav>
         </div>
 
-
-        
-    @* </header> *@
         <main role="main" class="pb-0"></main>
-            <div class="card mb-3">
+            <div class="card">
                 <div class="card-body">
                     @RenderBody()
                 </div>
@@ -205,7 +248,7 @@
         </main>
         
     </div>
-    <footer class="border-top footer bg-primary text-muted" data-bs-theme="dark">
+    <footer class="border-top footer bg-primary text-white" style="background-color:#092C74;">
         <div class="container text-center">
             2024 by OcBuu <i class="bi bi-balloon-heart-fill"></i>
         </div>
