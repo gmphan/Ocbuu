@@ -75,7 +75,7 @@
     </style>
 
     <style>
-        .custom-navbar-bg {
+        .custom-bg {
             background-color: #092C74 !important;
         }
     </style>
@@ -102,9 +102,9 @@
             string actionName = ViewContext.RouteData.Values["action"]?.ToString();
             @* Console.WriteLine($"{controllerName}, {actionName}"); *@
         }
-    <div class="container-fluid p-0" style="min-height:70vh;">
+    <div class="container-fluid p-0" style="min-height:90vh;">
         <div class="container-fluid p-0 mt-0">
-            <nav class="navbar navbar-expand-lg bg-dark btn-secondary custom-navbar-bg" data-bs-theme="dark">
+            <nav class="navbar navbar-expand-lg bg-dark btn-secondary custom-bg" data-bs-theme="dark">
             @* <nav class="navbar navbar-expand-lg bg-light btn-secondary" data-bs-theme="light"> *@
                 <div class="container">
                     <!-- Brand/logo -->
@@ -238,17 +238,15 @@
         </div>
 
         <main role="main" class="pb-0"></main>
-            <div class="card">
-                <div class="card-body">
-                    @RenderBody()
-                </div>
+            <div>
+                @RenderBody()
             </div>
             @* GP added _Notification partial here, so it can be used by all the pages before they rendered *@
-                <partial name="_Notification"/>
+            <partial name="_Notification"/>
         </main>
         
     </div>
-    <footer class="border-top footer bg-primary text-white" style="background-color:#092C74;">
+    <footer class="border-top footer bg-primary text-white custom-bg" style="min-height:10vh;">
         <div class="container text-center">
             2024 by OcBuu <i class="bi bi-balloon-heart-fill"></i>
         </div>
