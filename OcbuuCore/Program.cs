@@ -5,8 +5,18 @@ using Ocbuu.DataAcess.Repository;
 using Ocbuu.DataAcess.Repository.IRepository;
 using Ocbuu.Models;
 using Ocbuu.Services;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure Serilog from appsettings.json
+builder.Host.UseSerilog((context, services, configuration) => configuration
+    .ReadFrom.Configuration(context.Configuration)
+    .ReadFrom.Services(services)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
