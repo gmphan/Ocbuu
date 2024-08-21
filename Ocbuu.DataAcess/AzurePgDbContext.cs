@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Ocbuu.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Ocbuu.DataAcess
 {
-    public class AzurePgDbContext : DbContext
+    public class AzurePgDbContext : IdentityDbContext
     {
         public AzurePgDbContext(DbContextOptions<AzurePgDbContext> options) : base(options)
         {
@@ -22,6 +23,9 @@ namespace Ocbuu.DataAcess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // : IdentityDbContext require the line of code below to work
+            base.OnModelCreating(modelBuilder);
+
             _ = modelBuilder.Entity<ResumeHeader>().HasData(
                 new ResumeHeader
                 {

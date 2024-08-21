@@ -5,50 +5,18 @@ using Ocbuu.DataAcess.Repository;
 using Ocbuu.DataAcess.Repository.IRepository;
 using Ocbuu.Models;
 using Ocbuu.Services;
+using OcbuuCore.Injectors;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure Serilog from appsettings.json
-builder.Host.UseSerilog((context, services, configuration) => configuration
-    .ReadFrom.Configuration(context.Configuration)
-    .ReadFrom.Services(services)
-    .Enrich.FromLogContext()
-    .WriteTo.Console()
-    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day));
+// Services has InjectServicesFromAssemblies because of extension.
+builder.Services.InjectServicesFromAssemblies(builder.Configuration);
+
+// inject Serilog
+builder.InjectSerilogSetup();
 
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-//builder.Services.AddDbContext<AzureSqlDbContext>(Options => Options.UseSqlServer(
-  //                                  builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddDbContext<AzurePgDbContext>(Options => Options.UseNpgsql(
-                                    builder.Configuration.GetConnectionString("PostgresConnection")));
-
-/*  Authentication setup */
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<AzurePgDbContext>()
-        .AddDefaultTokenProviders();
-
-builder.Services.Configure<IdentityOptions>(options =>
-    {
-        options.Password.RequireDigit = true;
-        options.Password.RequiredLength = 8;
-        options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequireUppercase = true;
-        options.Password.RequireLowercase = true;
-    });
-
-builder.Services.ConfigureApplicationCookie(options =>
-    {
-        options.LoginPath = "/Account/Login";
-        options.LogoutPath = "/Account/Logout";
-        options.AccessDeniedPath = "/Account/AccessDenied";
-    });
-/* End Authentication setup */
-
-builder.Services.AddScoped<IUnityOfWork, UnitiyOfWork>();
-builder.Services.AddScoped<IResumeServices, ResumerServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -64,6 +32,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
