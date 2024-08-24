@@ -10,6 +10,7 @@ namespace OcbuuCore.Injectors
         public void InjectServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
     }
 }

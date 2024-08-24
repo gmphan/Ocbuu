@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Ocbuu.Models;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ocbuu.DataAcess
 {
-    public class AzurePgDbContext : IdentityDbContext
+    public class AzurePgDbContext : IdentityDbContext<IdentityUser>
     {
         public AzurePgDbContext(DbContextOptions<AzurePgDbContext> options) : base(options)
         {

@@ -1,12 +1,8 @@
+using OcbuuCore.Injectors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Ocbuu.DataAcess;
-using Ocbuu.DataAcess.Repository;
-using Ocbuu.DataAcess.Repository.IRepository;
-using Ocbuu.Models;
-using Ocbuu.Services;
-using OcbuuCore.Injectors;
-using Serilog;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,7 +30,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Visitor}/{controller=Home}/{action=Index}/{id?}");

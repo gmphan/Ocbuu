@@ -13,7 +13,7 @@ namespace OcbuuCore.Injectors
         public void InjectServices(IServiceCollection services, IConfiguration configuration)
         {
             /*  Authentication setup */
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<AzurePgDbContext>()
                     .AddDefaultTokenProviders();
 

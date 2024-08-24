@@ -175,63 +175,7 @@
                         @* justify-content-end *@
                     </div>
                     <div class="d-flex justify-content-end">
-                        <form class="d-flex" method="post" asp-action="Search" asp-controller="@controllerName">
-                            <div class="input-group">
-                                <input class="form-control" type="search" placeholder="Search">
-                                @* <input type="search" name="query" class="form-control" placeholder="Search @(controllerName == "Department" ? "Department" : controllerName)" aria-label="Search"> *@
-                                <button class="btn btn-secondary" type="submit">Search</button>
-                            </div>
-                        </form>
-                        @if (areaName == "Admin")
-                        {
-                            <form method="post" asp-area="Admin" asp-controller="Auth" asp-action="SignOut"  class="d-inline ms-3">
-                                <button type="submit" class="btn btn-secondary">Sign Out</button>
-                            </form>
-                            @* <a type="button" class="btn btn-secondary" href="/MicrosoftIdentity/Account/SignIn">Sign Out</a> *@
-                            @* <form method="post" action="/MicrosoftIdentity/Account/SignOut">
-                                <button type="submit" class="btn btn-link nav-link">Sign out</button>
-                            </form>
-                            <p>User is authenticated</p> <!-- Debugging output --> *@
-                        }
-                        else if (areaName == "Visitor")
-                        {
-                            <form method="post" asp-area="Admin" asp-controller="Auth" asp-action="SignIn" class="d-inline ms-3">
-                                <button type="submit" class="btn btn-secondary">Sign In</button>
-                            </form>
-                            @* <a type="button" class="btn btn-secondary" href="/MicrosoftIdentity/Account/SignIn">Sign In</a> *@
-                        }                        
-                        <!-- Button to trigger modal -->
-                        <button type="button" title="Click if you have any question." class="btn btn-secondary ms-3" data-bs-toggle="modal" 
-                                data-bs-target="#infoModal"><i class="bi bi-patch-question"></i></button>
-
-                        <!-- Modal -->
-                        <div id="infoModal" class="modal fade" tabindex="-1" role="dialog">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                   <div class="modal-header text-white">
-                                        <h2 class="modal-title">Support Information</h2>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true"></span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body text-white">
-                                        <h5>Information Services</h5>
-                                        <p>
-                                            Phone: (678) 466-4000 <br/>
-                                            <a href="https://clayton.edu/about/campus-and-instructional-sites" target="_blank">Maps and Directions</a>
-                                        </p><br/>
-                                        <h5>Technology Services</h5>
-                                        <p>
-                                            Phone: (678) 466-4357 <br/>
-                                            Email: <a href="mailto:thehub@clayton.edu">thehub@clayton.edu</a>
-                                        </p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                                 
+                        <partial name="_LoginPartial" />                                
                     </div>
                 </div>
             </nav>

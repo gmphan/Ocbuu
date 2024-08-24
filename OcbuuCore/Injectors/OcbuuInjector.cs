@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Ocbuu.DataAcess;
 using Ocbuu.DataAcess.Repository;
@@ -23,6 +25,9 @@ namespace OcbuuCore.Injectors
 
             // inject from Ocbuu.Services
             services.AddScoped<IResumeServices, ResumerServices>();
+            // Register the IEmailSender service with your EmailSender implementation
+            services.AddTransient<IEmailSender, EmailSenderServ>();
+
         }
     }
 }
