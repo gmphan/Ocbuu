@@ -2,6 +2,7 @@ using OcbuuCore.Injectors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Ocbuu.DataAcess;
+using Serilog;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,23 @@ builder.InjectSerilogSetup();
 
 
 var app = builder.Build();
+
+// Seed the admin user
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        // Resolve AdminSeederInjector and call SeedAdminUser
+        var adminSeeder = services.GetRequiredService<AdminSeederInjector>();
+        await adminSeeder.SeedAdminUser(services);
+    }
+    catch (Exception ex)
+    {
+        // Log errors (optional)
+        Log.Error(ex, "An error occurred while seeding the admin user.");
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

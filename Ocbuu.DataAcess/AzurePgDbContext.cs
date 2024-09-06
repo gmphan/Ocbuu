@@ -21,6 +21,7 @@ namespace Ocbuu.DataAcess
         public DbSet<ResumeHeader> ResumeHeaders { get; set; }
         public DbSet<ResumeExperience> ResumeExperiences { get; set; }
         public DbSet<ResumeSummary> ResumeSummaries { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

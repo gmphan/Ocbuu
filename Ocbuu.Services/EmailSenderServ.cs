@@ -11,7 +11,7 @@ namespace Ocbuu.Services
         private readonly ILogger<EmailSenderServ> _logger;
         public EmailSenderServ(ILogger<EmailSenderServ> logger)
         {
-            _logger = _logger; 
+            _logger = logger; 
         }
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
